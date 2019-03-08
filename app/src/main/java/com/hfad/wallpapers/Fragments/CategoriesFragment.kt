@@ -36,7 +36,7 @@ class CategoriesFragment : Fragment() {
 
         natureImg = view.findViewById(R.id.nature_category)
         natureImg.setOnClickListener {
-            intent.putExtra("nature", naturePics)
+            intent.putStringArrayListExtra("nature", naturePics)
             startActivity(intent)
         }
 
