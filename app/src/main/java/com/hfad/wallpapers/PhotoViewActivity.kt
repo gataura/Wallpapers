@@ -1,18 +1,29 @@
 package com.hfad.wallpapers
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
-import com.hfad.wallpapers.R
+import android.widget.Toast
+import android.support.v7.widget.Toolbar
+import java.io.File
+import java.io.FileOutputStream
 
 class PhotoViewActivity : AppCompatActivity() {
 
     var res = 0
     lateinit var img: ImageView
+    lateinit var toolbar: Toolbar
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -23,13 +34,18 @@ class PhotoViewActivity : AppCompatActivity() {
         res = intent.getIntExtra("pic",0)
         img = findViewById(R.id.main_image)
         img.setImageResource(res)
+        toolbar = findViewById(R.id.photo_view_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        var maxX = (img.width/2 - Resources.getSystem().displayMetrics.widthPixels/2)
-        var maxY = (img.height/2 - Resources.getSystem().displayMetrics.heightPixels/2)
-        var maxLeft = maxX * -1
-        var maxRight = maxX
-        var maxTop = maxY* -1
-        var maxBottom = maxY
+
+        val maxX = (img.width/2 - Resources.getSystem().displayMetrics.widthPixels/2)
+        val maxY = (img.height/2 - Resources.getSystem().displayMetrics.heightPixels/2)
+        val maxLeft = maxX * -1
+        val maxRight = maxX
+        val maxTop = maxY* -1
+        val maxBottom = maxY
 
         img.setOnTouchListener(object: View.OnTouchListener{
 
@@ -41,8 +57,8 @@ class PhotoViewActivity : AppCompatActivity() {
             var scrollByY = 0
 
             override fun onTouch(v: View, event: MotionEvent): Boolean {
-                var currentX: Float
-                var currentY:Float
+                val currentX: Float
+                val currentY:Float
 
                 when (event.action) {
 
@@ -133,5 +149,40 @@ class PhotoViewActivity : AppCompatActivity() {
 
         })
 
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    fun saveToDevice(img: ImageView) {
+        val draw: BitmapDrawable = img.drawable as BitmapDrawable
+        val bitmap =  draw.bitmap
+        var outStream: FileOutputStream? = null
+        val sdCard:File = Environment.getExternalStorageDirectory()
+        val dir = File(sdCard.absolutePath + "/Wallpapers")
+        dir.mkdirs()
+        val fileName = String.format("%d.jpg", System.currentTimeMillis())
+        val outFile = File(dir, fileName)
+        outStream = FileOutputStream(outFile)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+        outStream.flush()
+        outStream.close()
+    }
+
+
+    fun getPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+        } else {
+            saveToDevice(img)
+        }
+    }
+
+    fun onSaveButtonClick(v: View) {
+        getPermissions()
+        Toast.makeText(this, "Фото успешно сохранено!", Toast.LENGTH_SHORT).show()
     }
 }

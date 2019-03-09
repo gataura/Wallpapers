@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.hfad.wallpapers.Adapter.PicsAdapter
+import com.hfad.wallpapers.helper.SpaceItemDecoration
 
 class CategoryActivity : AppCompatActivity() {
 
@@ -18,13 +19,15 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
-        pics.addAll(intent.getStringArrayExtra("nature"))
+
+        pics.addAll(intent.getStringArrayListExtra("pics"))
 
 
         picsRecyclerView = findViewById(R.id.pics_recycler_view)
         picsRecyclerView.isNestedScrollingEnabled = false
         layoutManager = GridLayoutManager(this,2)
         picsRecyclerView.layoutManager = layoutManager
+        picsRecyclerView.addItemDecoration(SpaceItemDecoration(0))
         picsAdapter = PicsAdapter(pics, this)
         picsRecyclerView.adapter = picsAdapter
         picsAdapter.notifyDataSetChanged()

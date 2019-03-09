@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import com.hfad.wallpapers.Fragments.CategoriesFragment
+import com.hfad.wallpapers.Fragments.TrendingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,17 +16,14 @@ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_home -> {
+            R.id.navigation_categories -> {
                 fragmentMain = CategoriesFragment()
                 setFragment(fragmentMain)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
-
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-
+            R.id.navigation_trending -> {
+                fragmentMain = TrendingFragment()
+                setFragment(fragmentMain)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -37,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tx: FragmentTransaction =  supportFragmentManager.beginTransaction()
-        tx.replace(R.id.main_frame, CategoriesFragment())
+        tx.replace(R.id.main_frame, TrendingFragment())
         tx.commit()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

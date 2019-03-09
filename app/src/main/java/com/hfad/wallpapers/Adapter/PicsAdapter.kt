@@ -2,6 +2,7 @@ package com.hfad.wallpapers.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -20,9 +21,9 @@ class PicsAdapter(var values: List<String>, var context: Context): RecyclerView.
     override fun onBindViewHolder(p0: PicsViewHolder, p1: Int) {
 
         var item = values[p1]
-        res = context.resources.getIdentifier(item[p1].toString(), "drawable", context.packageName)
+        res = context.resources.getIdentifier(item, "drawable", context.packageName)
         p0.pic.setImageResource(res)
-        intent = Intent(context, CategoryActivity::class.java)
+        intent = Intent(context, PhotoViewActivity::class.java)
 
         p0.setItemClickListener1(object: ItemClickListener {
             override fun onClick(v: View, position: Int, isLongClick: Boolean) {
@@ -60,6 +61,12 @@ class PicsAdapter(var values: List<String>, var context: Context): RecyclerView.
 
         var pic:ImageView = itemView.findViewById(R.id.img)
         lateinit var itemClickListener: ItemClickListener
+        var picCard: CardView = itemView.findViewById(R.id.pic_card)
+
+        init {
+            picCard.setOnClickListener(this)
+            picCard.setOnLongClickListener(this)
+        }
     }
 
 }
