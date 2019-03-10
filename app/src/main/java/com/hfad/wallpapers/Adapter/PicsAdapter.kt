@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,11 +28,21 @@ class PicsAdapter(var values: List<String>, var context: Context): RecyclerView.
 
         p0.setItemClickListener1(object: ItemClickListener {
             override fun onClick(v: View, position: Int, isLongClick: Boolean) {
+                res = context.resources.getIdentifier(item, "drawable", context.packageName)
                 intent.putExtra("pic",res)
+                Log.d("sendId","$res")
                 context.startActivity(intent)
             }
         })
 
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     override fun getItemCount(): Int {

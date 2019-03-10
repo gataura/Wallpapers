@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import com.hfad.wallpapers.Fragments.CategoriesFragment
 import com.hfad.wallpapers.Fragments.TrendingFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     var fragmentMain = Fragment()
+    lateinit var toolbar: Toolbar
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -33,6 +35,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        toolbar = findViewById(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
 
         val tx: FragmentTransaction =  supportFragmentManager.beginTransaction()
         tx.replace(R.id.main_frame, TrendingFragment())

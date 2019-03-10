@@ -34,6 +34,13 @@ class CategoriesFragment : Fragment() {
     lateinit var spaceImg: ImageView
     lateinit var artImg: ImageView
     lateinit var carImg: ImageView
+    lateinit var celImg:ImageView
+    lateinit var animalImg:ImageView
+    lateinit var flagImg: ImageView
+    lateinit var oceanImg: ImageView
+    lateinit var seriesimg: ImageView
+    lateinit var movieImg: ImageView
+    lateinit var cityImg: ImageView
     lateinit var intent: Intent
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +54,13 @@ class CategoriesFragment : Fragment() {
         spaceImg = view.findViewById(R.id.space_category)
         artImg = view.findViewById(R.id.art_category)
         carImg = view.findViewById(R.id.cars_category)
+        celImg = view.findViewById(R.id.celebrities_category)
+        animalImg = view.findViewById(R.id.animals_category)
+        flagImg = view.findViewById(R.id.flag_category)
+        oceanImg = view.findViewById(R.id.ocean_category)
+        seriesimg = view.findViewById(R.id.series_category)
+        movieImg = view.findViewById(R.id.movie_category)
+        cityImg = view.findViewById(R.id.city_category)
 
         natureImg.setOnClickListener {
             intent.putExtra("pics", constants.naturePics)
@@ -65,6 +79,41 @@ class CategoriesFragment : Fragment() {
 
         carImg.setOnClickListener {
             intent.putExtra("pics", constants.carPics)
+            startActivity(intent)
+        }
+
+        celImg.setOnClickListener {
+            intent.putExtra("pics", constants.celebrities)
+            startActivity(intent)
+        }
+
+        animalImg.setOnClickListener {
+            intent.putExtra("pics", constants.animalPics)
+            startActivity(intent)
+        }
+
+        flagImg.setOnClickListener {
+            intent.putExtra("pics", constants.flagPics)
+            startActivity(intent)
+        }
+
+        oceanImg.setOnClickListener {
+            intent.putExtra("pics", constants.oceanPics)
+            startActivity(intent)
+        }
+
+        seriesimg.setOnClickListener {
+            intent.putExtra("pics", constants.seriesPics)
+            startActivity(intent)
+        }
+
+        movieImg.setOnClickListener {
+            intent.putExtra("pics", constants.moviePics)
+            startActivity(intent)
+        }
+
+        cityImg.setOnClickListener {
+            intent.putExtra("pics", constants.cityPics)
             startActivity(intent)
         }
 

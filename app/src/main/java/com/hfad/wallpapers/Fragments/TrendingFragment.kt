@@ -49,6 +49,7 @@ class TrendingFragment : Fragment() {
         for (i in constants.allPics) {
             allPics.addAll(i)
         }
+        allPics.shuffle()
 
         picsRecyclerView.isNestedScrollingEnabled = false
         layoutManager = GridLayoutManager(this.requireContext(), 2)
