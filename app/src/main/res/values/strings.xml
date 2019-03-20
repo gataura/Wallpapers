@@ -10,4 +10,6 @@
     <string name="trending">Trending</string>
     <string name="categories">Categories</string>
     <string name="open">Open</string>
+    <string name="facebook_app_id">821529048195841</string>
+    <string name="fb_login_protocol_scheme">fb821529048195841</string>
 </resources>

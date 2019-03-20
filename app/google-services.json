@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "94712407917",
+    "firebase_url": "https://wallpapers-f136e.firebaseio.com",
+    "project_id": "wallpapers-f136e",
+    "storage_bucket": "wallpapers-f136e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94712407917:android:410c23fd98e4031b",
+        "android_client_info": {
+          "package_name": "com.hfad.wallpapers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94712407917-v8qq106vj8fnvrvqg4pu53dj9fu6mglm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDS2DLAFA10iYVlBH8gVUtnGtDyiQO70U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

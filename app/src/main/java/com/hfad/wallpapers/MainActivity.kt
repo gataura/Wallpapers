@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.hfad.wallpapers.Fragments.CategoriesFragment
 import com.hfad.wallpapers.Fragments.TrendingFragment
+import com.yandex.metrica.YandexMetrica
+import com.yandex.metrica.YandexMetricaConfig
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         tx.commit()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        var config = YandexMetricaConfig.newConfigBuilder("1a57cd3d-a577-422f-aa97-4441da958713").build()
+        YandexMetrica.activate(this, config)
+        YandexMetrica.enableActivityAutoTracking(this.application)
+
     }
 
     fun setFragment(f: Fragment) {
