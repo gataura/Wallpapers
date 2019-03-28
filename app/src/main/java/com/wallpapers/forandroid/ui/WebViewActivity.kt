@@ -54,22 +54,7 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
         webView.settings.loadWithOverviewMode = true
         webView.settings.useWideViewPort = true
         webView.settings.javaScriptCanOpenWindowsAutomatically = true
-        webView.settings.builtInZoomControls = true
-        webView.settings.displayZoomControls = false
-        webView.settings.setRenderPriority(WebSettings.RenderPriority.HIGH)
-        webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
-        webView.settings.domStorageEnabled = true
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
-        webView.settings.useWideViewPort = true
-        webView.settings.savePassword = true
-        webView.settings.saveFormData = true
-        webView.settings.setEnableSmoothTransition(true)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-        } else {
-            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-        }
     }
 
     override fun onBackPressed() {
