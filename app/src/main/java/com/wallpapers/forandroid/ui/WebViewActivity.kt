@@ -1,4 +1,4 @@
-package com.hfad.wallpapers.ui
+package com.wallpapers.forandroid.ui
 
 
 import android.annotation.SuppressLint
@@ -11,9 +11,9 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import com.hfad.wallpapers.BaseActivity
-import com.hfad.wallpapers.EXTRA_TASK_URL
-import com.hfad.wallpapers.R
+import com.wallpapers.forandroid.BaseActivity
+import com.wallpapers.forandroid.EXTRA_TASK_URL
+import com.wallpapers.forandroid.R
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_web_view.*
 

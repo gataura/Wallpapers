@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:94712407917:android:410c23fd98e4031b",
+        "mobilesdk_app_id": "1:94712407917:android:3ee88521fcf48378",
         "android_client_info": {
-          "package_name": "com.hfad.wallpapers"
+          "package_name": "com.wallpapers.forandroid"
         }
       },
       "oauth_client": [

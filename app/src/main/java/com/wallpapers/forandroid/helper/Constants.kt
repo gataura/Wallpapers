@@ -1,4 +1,4 @@
-package com.hfad.wallpapers.helper
+package com.wallpapers.forandroid.helper
 
 class Constants {
 

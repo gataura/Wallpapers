@@ -1,4 +1,4 @@
-package com.hfad.wallpapers
+package com.wallpapers.forandroid
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,12 +7,9 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.ProgressBar
-import com.hfad.wallpapers.Adapter.PicsAdapter
-import com.hfad.wallpapers.helper.SpaceItemDecoration
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.wallpapers.forandroid.Adapter.PicsAdapter
+import com.wallpapers.forandroid.helper.SpaceItemDecoration
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.processors.PublishProcessor
 
 class CategoryActivity : AppCompatActivity() {

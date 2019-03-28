@@ -1,4 +1,4 @@
-package com.hfad.wallpapers
+package com.wallpapers.forandroid
 
 
 /**

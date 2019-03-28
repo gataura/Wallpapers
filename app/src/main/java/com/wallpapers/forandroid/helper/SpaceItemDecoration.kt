@@ -1,4 +1,4 @@
-package com.hfad.wallpapers.helper
+package com.wallpapers.forandroid.helper
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView

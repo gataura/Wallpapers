@@ -1,4 +1,4 @@
-package com.hfad.wallpapers
+package com.wallpapers.forandroid
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import com.hfad.wallpapers.Fragments.CategoriesFragment
-import com.hfad.wallpapers.Fragments.TrendingFragment
+import com.wallpapers.forandroid.Fragments.CategoriesFragment
+import com.wallpapers.forandroid.Fragments.TrendingFragment
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
 import kotlinx.android.synthetic.main.activity_main.*

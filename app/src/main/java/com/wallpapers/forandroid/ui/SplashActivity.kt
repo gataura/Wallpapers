@@ -1,4 +1,4 @@
-package com.hfad.wallpapers.ui
+package com.wallpapers.forandroid.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.hfad.wallpapers.*
+import com.wallpapers.forandroid.*
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 

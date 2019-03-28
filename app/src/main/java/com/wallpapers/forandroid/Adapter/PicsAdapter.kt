@@ -1,4 +1,4 @@
-package com.hfad.wallpapers.Adapter
+package com.wallpapers.forandroid.Adapter
 
 import android.content.Context
 import android.content.Intent
@@ -9,10 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.hfad.wallpapers.CategoryActivity
-import com.hfad.wallpapers.R
-import com.hfad.wallpapers.helper.ItemClickListener
-import com.hfad.wallpapers.PhotoViewActivity
+import com.wallpapers.forandroid.R
+import com.wallpapers.forandroid.helper.ItemClickListener
+import com.wallpapers.forandroid.PhotoViewActivity
 
 class PicsAdapter(var values: List<String>, var context: Context): RecyclerView.Adapter<PicsAdapter.PicsViewHolder>() {
 

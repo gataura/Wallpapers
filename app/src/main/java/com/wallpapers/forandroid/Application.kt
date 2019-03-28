@@ -1,4 +1,4 @@
-package com.hfad.wallpapers
+package com.wallpapers.forandroid
 
 import android.app.Application
 import com.google.firebase.FirebaseApp

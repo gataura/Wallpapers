@@ -1,4 +1,4 @@
-package com.hfad.wallpapers.Fragments
+package com.wallpapers.forandroid.Fragments
 
 
 import android.Manifest
@@ -12,11 +12,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hfad.wallpapers.Adapter.PicsAdapter
+import com.wallpapers.forandroid.Adapter.PicsAdapter
 
-import com.hfad.wallpapers.R
-import com.hfad.wallpapers.helper.Constants
-import com.hfad.wallpapers.helper.SpaceItemDecoration
+import com.wallpapers.forandroid.R
+import com.wallpapers.forandroid.helper.Constants
+import com.wallpapers.forandroid.helper.SpaceItemDecoration
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

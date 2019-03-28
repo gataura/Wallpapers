@@ -1,21 +1,17 @@
-package com.hfad.wallpapers.Fragments
+package com.wallpapers.forandroid.Fragments
 
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.hfad.wallpapers.CategoryActivity
+import com.wallpapers.forandroid.CategoryActivity
 
-import com.hfad.wallpapers.R
-import com.hfad.wallpapers.helper.Constants
+import com.wallpapers.forandroid.R
+import com.wallpapers.forandroid.helper.Constants
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

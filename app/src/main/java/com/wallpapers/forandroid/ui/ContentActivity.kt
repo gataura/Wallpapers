@@ -1,7 +1,7 @@
-package com.hfad.wallpapers.ui
+package com.wallpapers.forandroid.ui
 
-import com.hfad.wallpapers.BaseActivity
-import com.hfad.wallpapers.R
+import com.wallpapers.forandroid.BaseActivity
+import com.wallpapers.forandroid.R
 
 /**
  * Created by Andriy Deputat email(andriy.deputat@gmail.com) on 3/13/19.
