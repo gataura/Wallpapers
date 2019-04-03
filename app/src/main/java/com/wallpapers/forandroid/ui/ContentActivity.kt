@@ -1,6 +1,6 @@
 package com.wallpapers.forandroid.ui
 
-import com.wallpapers.forandroid.BaseActivity
+import com.wallpapers.forandroid._core.BaseActivity
 import com.wallpapers.forandroid.R
 
 /**

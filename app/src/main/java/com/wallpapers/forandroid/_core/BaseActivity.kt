@@ -1,11 +1,18 @@
-package com.wallpapers.forandroid
+package com.wallpapers.forandroid._core
 
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import com.facebook.appevents.AppEventsLogger
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.wallpapers.forandroid.BuildConfig
+import com.wallpapers.forandroid.R
 
 
 /**
@@ -14,11 +21,13 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 abstract class BaseActivity : AppCompatActivity() {
 
     private lateinit var appEventsLogger: AppEventsLogger
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getContentView())
         appEventsLogger = AppEventsLogger.newLogger(this)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         initUI()
         setUI()
     }
@@ -30,15 +39,16 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun setUI()
 
+    @Deprecated(message = "use getValueFromDatabase")
     fun fetchRemoteConfig(
-        onTaskSuccessful: (FirebaseRemoteConfig) -> Unit,
-        onFailure: () -> Unit = {}
+            onTaskSuccessful: (FirebaseRemoteConfig) -> Unit,
+            onFailure: () -> Unit = {}
     ) {
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setDeveloperModeEnabled(BuildConfig.DEBUG)
-            .build()
-        val cacheExpiration: Long = 2000
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .build()
+        val cacheExpiration: Long = 0
 
         remoteConfig.setConfigSettings(configSettings)
         remoteConfig.setDefaults(R.xml.default_parameters)
@@ -51,7 +61,40 @@ abstract class BaseActivity : AppCompatActivity() {
         }.addOnFailureListener { onFailure() }
     }
 
+    fun getValuesFromDatabase(
+            onTaskSuccessful: (DataSnapshot) -> Unit,
+            onFailure: () -> Unit = {}
+    ) {
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.reference
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                onTaskSuccessful(dataSnapshot)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                onFailure()
+            }
+        }
+
+        myRef.addListenerForSingleValueEvent(postListener)
+    }
+
+    /**
+     * method logs event(firebase and facebook analytics)
+     */
+    fun logEvent(event: String, bundle: Bundle? = null) {
+        if (bundle != null) {
+            appEventsLogger.logEvent(event, bundle)
+            firebaseAnalytics.logEvent(event, bundle)
+        } else {
+            appEventsLogger.logEvent(event, null)
+            firebaseAnalytics.logEvent(event, null)
+        }
+    }
+
     fun logEvent(event: String) {
         appEventsLogger.logEvent(event)
+        firebaseAnalytics.logEvent(event, null)
     }
 }

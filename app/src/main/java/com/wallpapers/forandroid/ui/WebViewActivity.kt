@@ -4,14 +4,16 @@ package com.wallpapers.forandroid.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
-import android.os.Build
+import android.net.Uri
+import android.os.Bundle
 import android.view.View
 import android.webkit.WebChromeClient
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import com.wallpapers.forandroid.BaseActivity
+import com.wallpapers.forandroid.CONVERSION_DATA
+import com.wallpapers.forandroid.Conversion
+import com.wallpapers.forandroid._core.BaseActivity
 import com.wallpapers.forandroid.EXTRA_TASK_URL
 import com.wallpapers.forandroid.R
 import im.delight.android.webview.AdvancedWebView
@@ -33,20 +35,49 @@ class WebViewActivity : BaseActivity(), AdvancedWebView.Listener {
         progressBar = progress_bar
     }
 
+    private var conversions: MutableList<Conversion> = mutableListOf()
     override fun setUI() {
+
+        getValuesFromDatabase({ dataSnapshot ->
+            val values = dataSnapshot.child(CONVERSION_DATA)
+            for (conversionSnapshot in values.children) {
+                val conversion = conversionSnapshot.getValue(Conversion::class.java)
+                conversion?.conversionEvent = conversionSnapshot.key!!
+                conversion?.let { conversions.add(it) }
+            }
+            webView.loadUrl(intent.getStringExtra(EXTRA_TASK_URL))
+        })
+
         logEvent("web-view-screen")
         progressBar.visibility = View.VISIBLE
 
         configureWebView()
 
-        webView.loadUrl(intent.getStringExtra(EXTRA_TASK_URL))
+    }
+
+    private fun logEventIfUrlIsSuitable(urlSafe: String) {
+        conversions.forEach {
+            if (urlSafe.contains(it.offerId!!) && (urlSafe.contains(it.l!!))) {
+                val uri = Uri.parse(urlSafe)
+                val args = uri.queryParameterNames
+                val bundle = Bundle()
+
+                args.forEach {key ->
+                    bundle.putString(key, uri.getQueryParameter(key))
+                }
+                logEvent(it.conversionEvent!!, bundle)
+            }
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun configureWebView() {
         webView.webChromeClient = WebChromeClient()
         webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView, url: String) {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                url?.let {urlSafe->
+                    logEventIfUrlIsSuitable(urlSafe)
+                }
                 progressBar.visibility = View.GONE
             }
         }

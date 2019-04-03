@@ -3,12 +3,15 @@ package com.wallpapers.forandroid.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.wallpapers.forandroid.*
+import com.wallpapers.forandroid._core.BaseActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 
@@ -20,7 +23,7 @@ class SplashActivity : BaseActivity() {
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var remoteConfig: FirebaseRemoteConfig
+    private lateinit var dataSnapshot: DataSnapshot
 
     override fun getContentView(): Int = R.layout.activity_web_view
 
@@ -41,20 +44,20 @@ class SplashActivity : BaseActivity() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 if (url.contains("/money")) {
                     // task url for web view or browser
-                    val taskUrl = remoteConfig.getString(TASK_URL)
-                    val value = remoteConfig.getString(SHOW_IN)
+                    val taskUrl = dataSnapshot.child(TASK_URL).value as String
+                    val value = dataSnapshot.child(SHOW_IN).value as String
 
                     if (value == WEB_VIEW) {
                         startActivity(
-                            Intent(this@SplashActivity, WebViewActivity::class.java)
+                                Intent(this@SplashActivity, WebViewActivity::class.java)
                                 .putExtra(EXTRA_TASK_URL, taskUrl)
                         )
                         finish()
                     } else if (value == BROWSER) {
                         // launch browser with task url
                         val browserIntent = Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse(taskUrl)
+                                Intent.ACTION_VIEW,
+                                Uri.parse("")
                         )
 
                         logEvent("task-url-browser")
@@ -62,6 +65,7 @@ class SplashActivity : BaseActivity() {
                         finish()
                     }
                 } else if (url.contains("/main")) {
+                    //val taskUrl = dataSnapshot.child(TASK_URL).value as String
                     startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     finish()
                 }
@@ -72,11 +76,12 @@ class SplashActivity : BaseActivity() {
 
         progressBar.visibility = View.VISIBLE
 
-        fetchRemoteConfig({
-            remoteConfig = it
+        getValuesFromDatabase({
+            dataSnapshot = it
             // load needed url to determine if user is suitable
-            webView.loadUrl(it.getString(SPLASH_URL))
+            webView.loadUrl(it.child(SPLASH_URL).value as String)
         }, {
+            Log.d("SplashErrActivity", "didn't work fetchremote")
             progressBar.visibility = View.GONE
         })
     }
