@@ -4,11 +4,11 @@ package com.wallpapers.forandroid.Fragments
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,13 +27,13 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class TrendingFragment : Fragment() {
+class TrendingFragment : androidx.fragment.app.Fragment() {
 
     var allPics = mutableListOf<String>()
     var constants = Constants()
-    lateinit var picsRecyclerView: RecyclerView
+    lateinit var picsRecyclerView: androidx.recyclerview.widget.RecyclerView
     lateinit var picsAdapter: PicsAdapter
-    lateinit var layoutManager: GridLayoutManager
+    lateinit var layoutManager: androidx.recyclerview.widget.GridLayoutManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -52,7 +52,7 @@ class TrendingFragment : Fragment() {
         allPics.shuffle()
 
         picsRecyclerView.isNestedScrollingEnabled = false
-        layoutManager = GridLayoutManager(this.requireContext(), 2)
+        layoutManager = androidx.recyclerview.widget.GridLayoutManager(this.requireContext(), 2)
         picsRecyclerView.layoutManager = layoutManager
         picsAdapter = PicsAdapter(allPics, this.requireContext())
         picsRecyclerView.adapter = picsAdapter

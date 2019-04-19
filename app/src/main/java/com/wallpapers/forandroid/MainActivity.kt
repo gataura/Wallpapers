@@ -1,12 +1,12 @@
 package com.wallpapers.forandroid
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.wallpapers.forandroid.Fragments.CategoriesFragment
 import com.wallpapers.forandroid.Fragments.TrendingFragment
 import com.yandex.metrica.YandexMetrica
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var fragmentMain = Fragment()
+    var fragmentMain = androidx.fragment.app.Fragment()
     lateinit var toolbar: Toolbar
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.main_toolbar)
         setSupportActionBar(toolbar)
 
-        val tx: FragmentTransaction =  supportFragmentManager.beginTransaction()
+        val tx: androidx.fragment.app.FragmentTransaction =  supportFragmentManager.beginTransaction()
         tx.replace(R.id.main_frame, TrendingFragment())
         tx.commit()
 
@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun setFragment(f: Fragment) {
+    fun setFragment(f: androidx.fragment.app.Fragment) {
 
-        val fm:FragmentManager = supportFragmentManager
-        val ft: FragmentTransaction = fm.beginTransaction()
+        val fm: androidx.fragment.app.FragmentManager = supportFragmentManager
+        val ft: androidx.fragment.app.FragmentTransaction = fm.beginTransaction()
 
         ft.replace(R.id.main_frame, f)
         ft.commit()

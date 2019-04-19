@@ -1,10 +1,10 @@
 package com.wallpapers.forandroid
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.Toolbar
 import android.view.View
 import android.widget.ProgressBar
 import com.wallpapers.forandroid.Adapter.PicsAdapter
@@ -17,9 +17,9 @@ class CategoryActivity : AppCompatActivity() {
 
     var pics = mutableListOf<String>()
     var tempPics = mutableListOf<String>()
-    lateinit var picsRecyclerView: RecyclerView
+    lateinit var picsRecyclerView: androidx.recyclerview.widget.RecyclerView
     lateinit var picsAdapter: PicsAdapter
-    lateinit var layoutManager: GridLayoutManager
+    lateinit var layoutManager: androidx.recyclerview.widget.GridLayoutManager
     lateinit var toolbar: Toolbar
     lateinit var progressBar: ProgressBar
     private lateinit var compositeDispossable: CompositeDisposable
@@ -49,7 +49,7 @@ class CategoryActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.category_progress_bar)
         picsRecyclerView = findViewById(R.id.pics_recycler_view)
         picsRecyclerView.isNestedScrollingEnabled = false
-        layoutManager = GridLayoutManager(this,2)
+        layoutManager = androidx.recyclerview.widget.GridLayoutManager(this, 2)
         picsRecyclerView.layoutManager = layoutManager
         picsRecyclerView.addItemDecoration(SpaceItemDecoration(0))
         picsAdapter = PicsAdapter(pics, this)
@@ -69,9 +69,9 @@ class CategoryActivity : AppCompatActivity() {
 
     fun setUpLoadMoreListener() {
 
-        picsRecyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+        picsRecyclerView.addOnScrollListener(object: androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
 
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
                 totalItemCount = picsRecyclerView.layoutManager!!.itemCount

@@ -3,7 +3,7 @@ package com.wallpapers.forandroid.Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 
-class CategoriesFragment : Fragment() {
+class CategoriesFragment : androidx.fragment.app.Fragment() {
 
     var constants = Constants()
     lateinit var natureImg: ImageView

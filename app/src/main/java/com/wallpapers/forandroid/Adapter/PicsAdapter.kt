@@ -2,8 +2,8 @@ package com.wallpapers.forandroid.Adapter
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +13,7 @@ import com.wallpapers.forandroid.R
 import com.wallpapers.forandroid.helper.ItemClickListener
 import com.wallpapers.forandroid.PhotoViewActivity
 
-class PicsAdapter(var values: List<String>, var context: Context): RecyclerView.Adapter<PicsAdapter.PicsViewHolder>() {
+class PicsAdapter(var values: List<String>, var context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<PicsAdapter.PicsViewHolder>() {
 
     var res = 0
     lateinit var intent: Intent
@@ -55,7 +55,7 @@ class PicsAdapter(var values: List<String>, var context: Context): RecyclerView.
 
     }
 
-    class PicsViewHolder(itemView: View):RecyclerView.ViewHolder(itemView), View.OnLongClickListener, View.OnClickListener {
+    class PicsViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView), View.OnLongClickListener, View.OnClickListener {
 
         fun setItemClickListener1(itemClickListener: ItemClickListener) {
             this.itemClickListener = itemClickListener
@@ -71,7 +71,7 @@ class PicsAdapter(var values: List<String>, var context: Context): RecyclerView.
 
         var pic:ImageView = itemView.findViewById(R.id.img)
         lateinit var itemClickListener: ItemClickListener
-        var picCard: CardView = itemView.findViewById(R.id.pic_card)
+        var picCard: androidx.cardview.widget.CardView = itemView.findViewById(R.id.pic_card)
 
         init {
             picCard.setOnClickListener(this)

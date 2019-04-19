@@ -9,7 +9,6 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import com.google.firebase.database.DataSnapshot
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.wallpapers.forandroid.*
 import com.wallpapers.forandroid._core.BaseActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
